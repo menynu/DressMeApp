@@ -23,6 +23,7 @@ allprojects {
     repositories {
         mavenCentral()
         mavenLocal()
+        jcenter()  // added since latest RN version is unstable within navigation & other repositories (although it support might shut down in future)
         maven {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
             url("$rootDir/../node_modules/react-native/android")

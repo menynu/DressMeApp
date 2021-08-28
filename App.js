@@ -7,13 +7,14 @@
  */
 
 import React from 'react';
-import {Text, View} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import DrawerNavigator from './src/navigation/DrawerNavigator';
 
 const App = () => {
   return (
-    <View>
-      <Text>Dress Me App</Text>
-    </View>
+    <NavigationContainer>
+      <DrawerNavigator />
+    </NavigationContainer>
   );
 };
 export default App;
