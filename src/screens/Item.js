@@ -6,6 +6,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const Item = inject('DressStore')(
   observer(({route, navigation}) => {
+    const [size, setSize] = useState(null);
     const [itemList, setItemList] = useState(
       JSON.parse(JSON.stringify(DressStore.itemStore)),
     );
@@ -32,7 +33,6 @@ const Item = inject('DressStore')(
               </Text>
               <Text style={{flexDirection: 'row'}}>
                 {item.colors.map((clr, i) => {
-                  console.log('color name: ', clr);
                   return (
                     <View
                       key={i}
@@ -43,10 +43,23 @@ const Item = inject('DressStore')(
                       }}>
                       <TouchableOpacity
                         style={{flexDirection: 'row'}}
-                        // onPress={() => }
-                      >
+                        onPress={() => {
+                          setSize(item.id);
+                          console.log('my item is:', item);
+                        }}>
                         <View style={{flexDirection: 'row'}}>
-                          <Text style={{flexDirection: 'row'}}>COLOR</Text>
+                          <Text style={{flexDirection: 'row'}}>Choose</Text>
+                          {size == item.id ? (
+                            <View>
+                              {item.sizes.map((s, i) => {
+                                return (
+                                  <View key={i}>
+                                    <Text>{s} </Text>
+                                  </View>
+                                );
+                              })}
+                            </View>
+                          ) : null}
                         </View>
                       </TouchableOpacity>
                     </View>
