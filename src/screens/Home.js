@@ -1,11 +1,13 @@
 import React from 'react';
-import {View, Button, Text, StyleSheet} from 'react-native';
-
-const Home = () => {
+import {View, Text, StyleSheet} from 'react-native';
+import Button from '../components/Button';
+const Home = ({route, navigation}) => {
   return (
     <View style={styles.center}>
       <Text>Welcome to Dress Me App</Text>
-      <Button title="Go to Item Screen" />
+      <Button name="Shoes" navigation={navigation} />
+      <Button name="Pants" navigation={navigation} />
+      <Button name="Shirts" navigation={navigation} />
     </View>
   );
 };
