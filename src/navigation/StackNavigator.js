@@ -16,8 +16,9 @@ const screenOptionStyle = {
 const ItemStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="About" component={Item} />
+      <Stack.Screen name="Shoes" component={Home} />
+      <Stack.Screen name="Pants" component={Item} />
+      <Stack.Screen name="Shirts" component={Item} />
     </Stack.Navigator>
   );
 };

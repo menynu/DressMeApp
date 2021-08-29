@@ -9,12 +9,16 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import DrawerNavigator from './src/navigation/DrawerNavigator';
+import {Provider} from 'mobx-react';
+import dressStore from './src/stores/DressStore';
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <DrawerNavigator />
-    </NavigationContainer>
+    <Provider value={dressStore}>
+      <NavigationContainer>
+        <DrawerNavigator />
+      </NavigationContainer>
+    </Provider>
   );
 };
 export default App;
