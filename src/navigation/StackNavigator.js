@@ -19,7 +19,7 @@ const ItemStackNavigator = () => {
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Shoes" component={Item} />
       <Stack.Screen name="Pants" component={Item} />
-      <Stack.Screen name="Shirts" component={Item} />
+      <Stack.Screen name="Shirt" component={Item} />
     </Stack.Navigator>
   );
 };

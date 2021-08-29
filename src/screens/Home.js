@@ -7,7 +7,7 @@ const Home = ({route, navigation}) => {
       <Text>Welcome to Dress Me App</Text>
       <Button name="Shoes" navigation={navigation} />
       <Button name="Pants" navigation={navigation} />
-      <Button name="Shirts" navigation={navigation} />
+      <Button name="Shirt" navigation={navigation} />
     </View>
   );
 };
