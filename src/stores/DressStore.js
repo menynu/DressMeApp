@@ -8,8 +8,7 @@ class DressStore {
   completedSet = 0;
   time = 0;
   constructor() {
-    let sets;
-    // itemSet = new Array(3);
+    itemSet = new Array(3);
     itemStore = [];
     time = 0;
     makeAutoObservable(this);
@@ -36,13 +35,8 @@ class DressStore {
   async clearStoredDate() {
     await clearPersistedStore(this);
   }
-  get getDressData() {
-    return this.itemStore;
-  }
 
   addToCart = item => {
-    console.log('item is added, the item:', item);
-    console.log('item type= ', item.type);
     switch (item.type) {
       case 'shoes':
         this.itemSet[0] = item;
