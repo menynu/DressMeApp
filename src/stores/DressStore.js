@@ -55,10 +55,7 @@ class DressStore {
   finishDress = () => {
     console.log('finish dressed press');
     this.completedSet += 1;
-    // this.clearStoredDate;
-    // AsyncStorage.removeItem('itemSet');
     this.itemSet = [null, null, null];
-    // this.itemSet = new Array(3);
   };
 
   fetchDataAsync = async () => {

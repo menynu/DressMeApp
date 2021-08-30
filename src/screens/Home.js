@@ -18,6 +18,10 @@ const Home = inject('DressStore')(
         <Text>
           You have completed {DressStore.completedSet} sets in overall , Thanks!
         </Text>
+        <Text>
+          You Choose {3 - DressStore.itemSet.filter(i => i === null).length}/ 3
+          items for collections
+        </Text>
         <Button name="Shoes" navigation={navigation} />
         <Button name="Pants" navigation={navigation} />
         <Button name="Shirt" navigation={navigation} />

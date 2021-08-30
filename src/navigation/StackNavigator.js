@@ -2,6 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import Home from '../screens/Home';
 import Item from '../screens/Item';
+import Success from '../screens/Success';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,7 @@ const ItemStackNavigator = () => {
       <Stack.Screen name="Shoes" component={Item} />
       <Stack.Screen name="Pants" component={Item} />
       <Stack.Screen name="Shirt" component={Item} />
+      <Stack.Screen name="Success" component={Success} />
     </Stack.Navigator>
   );
 };
