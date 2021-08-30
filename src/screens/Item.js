@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Text, Button} from 'react-native';
+import {View, StyleSheet, Text, Button, Alert} from 'react-native';
 import {observer, inject} from 'mobx-react';
 import DressStore from '../stores/DressStore';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -10,6 +10,16 @@ const Item = inject('DressStore')(
     const [itemList, setItemList] = useState(
       JSON.parse(JSON.stringify(DressStore.itemStore)),
     );
+
+    const addItem = (item, size, color) => {
+      let Item = {
+        ...item,
+        selectedColor: color,
+        selectedSize: size,
+      };
+      DressStore.addToCart(Item);
+      navigation.navigate('Home');
+    };
 
     return (
       <View style={styles.center}>
@@ -34,40 +44,64 @@ const Item = inject('DressStore')(
               <Text style={{flexDirection: 'row'}}>
                 {item.colors.map((clr, i) => {
                   return (
-                    <View
-                      key={i}
-                      style={{
-                        backgroundColor: clr,
-                        margin: 2,
-                        width: '15%',
-                      }}>
-                      <TouchableOpacity
-                        style={{flexDirection: 'row'}}
-                        onPress={() => {
-                          setSize(item.id);
-                          console.log('my item is:', item);
+                    <>
+                      <View
+                        key={i}
+                        style={{
+                          backgroundColor: clr,
+                          margin: 2,
+                          width: '15%',
                         }}>
-                        <View style={{flexDirection: 'row'}}>
-                          <Text style={{flexDirection: 'row'}}>Choose</Text>
-                          {size == item.id ? (
-                            <View>
-                              {item.sizes.map((s, i) => {
-                                return (
-                                  <View key={i}>
+                        <TouchableOpacity
+                          style={{flexDirection: 'row'}}
+                          onPress={() => {
+                            setSize(item.id);
+                          }}>
+                          <View style={{flexDirection: 'row'}}>
+                            <Text style={{flexDirection: 'row'}}>Choose</Text>
+                          </View>
+                        </TouchableOpacity>
+                      </View>
+                      <View>
+                        {size == item.id ? (
+                          <View key={i}>
+                            {item.sizes.map((s, i) => {
+                              return (
+                                <View key={i}>
+                                  <TouchableOpacity
+                                    onPress={() => {
+                                      Alert.alert(
+                                        'Item selection:',
+                                        `Do you want this ${item.type}?`,
+                                        [
+                                          {
+                                            text: 'Cancel',
+                                            onPress: () => {
+                                              return null;
+                                            },
+                                          },
+                                          {
+                                            text: 'Confirm',
+                                            onPress: () => {
+                                              //add item to store
+                                              addItem(item, s, clr);
+                                            },
+                                          },
+                                        ],
+                                      );
+                                    }}>
                                     <Text>{s} </Text>
-                                  </View>
-                                );
-                              })}
-                            </View>
-                          ) : null}
-                        </View>
-                      </TouchableOpacity>
-                    </View>
+                                  </TouchableOpacity>
+                                </View>
+                              );
+                            })}
+                          </View>
+                        ) : null}
+                      </View>
+                    </>
                   );
                 })}
               </Text>
-
-              {console.log('color: ', item.colors)}
             </View>
           ) : null;
         })}
