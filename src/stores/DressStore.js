@@ -1,29 +1,33 @@
 import {makeAutoObservable, runInAction} from 'mobx';
-import {makePersistable} from 'mobx-persist-store';
+import {makePersistable, clearPersistedStore} from 'mobx-persist-store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 class DressStore {
-  itemSet = [];
+  itemSet = new Array(3);
   itemStore = [];
+  completedSet = 0;
   constructor() {
     let sets;
+    itemStore = [];
     makeAutoObservable(this);
     makePersistable(
       this,
       {
         name: 'DressStore',
-        properties: ['itemStore', 'sets', 'itemSet'], // num of completed sets
+        properties: ['itemStore', 'sets', 'itemSet', 'completedSet'], // num of completed sets
         storage: AsyncStorage, //check for future set
         removeOnExpiration: false,
         stringify: true, //would be set to true
         debugMode: true,
       },
-      {delay: 200, fireImmediately: true},
+      {delay: 200, fireImmediately: false},
     );
     this.fetchDataAsync();
-    // this.mySet();
   }
 
+  async clearStoredDate() {
+    await clearPersistedStore(this);
+  }
   get getDressData() {
     return this.itemStore;
   }
@@ -38,11 +42,7 @@ class DressStore {
     this.mySet();
     switch (item.type) {
       case 'shoes':
-        this.sets = 1;
-        this.mySet();
-        runInAction(() => {
-          this.itemSet[0] = item;
-        });
+        this.itemSet[0] = item;
         break;
       case 'pants':
         this.itemSet[1] = item;
@@ -50,6 +50,15 @@ class DressStore {
       case 'shirt':
         this.itemSet[2] = item;
     }
+  };
+
+  finishDress = () => {
+    console.log('finish dressed press');
+    this.completedSet += 1;
+    // this.clearStoredDate;
+    // AsyncStorage.removeItem('itemSet');
+    this.itemSet = [null, null, null];
+    // this.itemSet = new Array(3);
   };
 
   fetchDataAsync = async () => {
