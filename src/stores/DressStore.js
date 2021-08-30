@@ -3,7 +3,7 @@ import {makePersistable} from 'mobx-persist-store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 class DressStore {
-  itemSet = new Array(3);
+  itemSet = [];
   itemStore = [];
   constructor() {
     let sets;
@@ -18,11 +18,10 @@ class DressStore {
         stringify: true, //would be set to true
         debugMode: true,
       },
-      {delay: 200, fireImmediately: false},
+      {delay: 200, fireImmediately: true},
     );
     this.fetchDataAsync();
-    this.mySet();
-    console.log('arr length: ', this.itemSet.length);
+    // this.mySet();
   }
 
   get getDressData() {
@@ -35,15 +34,20 @@ class DressStore {
 
   addToCart = item => {
     console.log('item is added, the item:', item);
+    console.log('item type= ', item.type);
+    this.mySet();
     switch (item.type) {
-      case 'Shoes':
-        this.itemSet[0] = item;
-        console.log('shoes added!! ', itemSet[0]);
+      case 'shoes':
+        this.sets = 1;
+        this.mySet();
+        runInAction(() => {
+          this.itemSet[0] = item;
+        });
         break;
-      case 'Pants':
+      case 'pants':
         this.itemSet[1] = item;
         break;
-      case 'Shirt':
+      case 'shirt':
         this.itemSet[2] = item;
     }
   };
