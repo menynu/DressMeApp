@@ -7,6 +7,7 @@ import {
 } from '@react-navigation/drawer';
 import {ItemStackNavigator} from './StackNavigator';
 import '@react-navigation/stack';
+import Success from '../screens/Success';
 const Drawer = createDrawerNavigator();
 
 function CustomDrawerContent(props) {
@@ -35,6 +36,7 @@ const DrawerNavigator = () => {
       drawerContent={props => <CustomDrawerContent {...props} />}>
       {/* <Drawer.Screen name="Item" component={BottomTabNavigator} /> */}
       <Drawer.Screen name="Home" component={ItemStackNavigator} />
+      <Drawer.Screen name="Success" component={Success} />
     </Drawer.Navigator>
   );
 };

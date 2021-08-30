@@ -6,15 +6,18 @@ class DressStore {
   itemSet = new Array(3);
   itemStore = [];
   completedSet = 0;
+  time = 0;
   constructor() {
     let sets;
+    // itemSet = new Array(3);
     itemStore = [];
+    time = 0;
     makeAutoObservable(this);
     makePersistable(
       this,
       {
         name: 'DressStore',
-        properties: ['itemStore', 'sets', 'itemSet', 'completedSet'], // num of completed sets
+        properties: ['itemStore', 'itemSet', 'completedSet', 'time'], // num of completed sets
         storage: AsyncStorage, //check for future set
         removeOnExpiration: false,
         stringify: true, //would be set to true
@@ -23,7 +26,12 @@ class DressStore {
       {delay: 200, fireImmediately: false},
     );
     this.fetchDataAsync();
+    this.setTime();
   }
+
+  setTime = () => {
+    this.time = Date.now();
+  };
 
   async clearStoredDate() {
     await clearPersistedStore(this);
@@ -32,14 +40,9 @@ class DressStore {
     return this.itemStore;
   }
 
-  mySet = () => {
-    this.sets = 2;
-  };
-
   addToCart = item => {
     console.log('item is added, the item:', item);
     console.log('item type= ', item.type);
-    this.mySet();
     switch (item.type) {
       case 'shoes':
         this.itemSet[0] = item;

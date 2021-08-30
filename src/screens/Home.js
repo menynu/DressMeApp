@@ -11,7 +11,9 @@ const Home = inject('DressStore')(
       JSON.parse(JSON.stringify(DressStore.itemSet)),
     );
     console.log('the dress set is:', dress);
-
+    const handleFinishButton = () => {
+      navigation.navigate('Success');
+    };
     return (
       <View style={styles.center}>
         <Text>Welcome to Dress Me App</Text>
@@ -27,7 +29,7 @@ const Home = inject('DressStore')(
         <Button name="Shirt" navigation={navigation} />
 
         {!DressStore.itemSet.includes(null) ? (
-          <TouchableOpacity onPress={DressStore.finishDress}>
+          <TouchableOpacity onPress={() => handleFinishButton()}>
             <View>
               <Text>finish button</Text>
             </View>
