@@ -1,24 +1,29 @@
 import React from 'react';
-import {View, Text, StyleSheet, Button} from 'react-native';
+import {View, Text, StyleSheet, Button, Image} from 'react-native';
 import {observer, inject} from 'mobx-react';
 import DressStore from '../stores/DressStore';
 
 const Success = inject('DressStore')(
   observer(({route, navigation}) => {
-    const [time, setTime] = React.useState(DressStore.time);
     const [dress, setDress] = React.useState(
       JSON.parse(JSON.stringify(DressStore.itemSet)),
     );
     console.log('item set: ', dress);
-    console.log('shoe size:', dress[0].selectedSize);
     const handleClick = () => {
       DressStore.setTime();
       DressStore.finishDress();
       navigation.navigate('Home');
     };
+
     return (
       <View style={styles.center}>
-        <Text>Success Screen</Text>
+        <Text>Congratulation! you have completed a dressing set!</Text>
+        <Image
+          source={{
+            uri: `https://picsum.photos/200?${Date.now()}`, // fix the image cache problem
+          }}
+          style={{width: 200, height: 200}}
+        />
         <Text>
           It took you {Math.round((Date.now() - DressStore.time) / 1000)}{' '}
           seconds to choose!
