@@ -70,7 +70,6 @@ const Item = inject('DressStore')(
               <Text
                 style={{
                   textAlign: 'center',
-                  alignItems: 'space-between',
                   margin: 5,
                 }}>
                 name: {item.name}
@@ -98,7 +97,7 @@ const Item = inject('DressStore')(
                           </View>
                         </TouchableOpacity>
                       </View>
-                      <View>
+                      <View style={{flex: 1, margin: 5}}>
                         {size == item.id ? (
                           <View key={i}>
                             {item.sizes.map((s, i) => {
@@ -126,7 +125,7 @@ const Item = inject('DressStore')(
                                         ],
                                       );
                                     }}>
-                                    <Text>{s} </Text>
+                                    <Text style={{flex: 1}}>{s} </Text>
                                   </TouchableOpacity>
                                 </View>
                               );
@@ -164,11 +163,12 @@ const styles = StyleSheet.create({
     elevation: 1,
     marginLeft: 5,
     marginRight: 5,
-    marginTop: 20,
-    marginBottom: 10,
+    marginTop: 10,
+    // marginBottom: 0,
     width: '99%',
-    height: 35,
+    height: 40,
     flex: 1,
+    flexGrow: 2,
   },
   Btn: {
     width: '5%',
