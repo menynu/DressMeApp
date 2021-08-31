@@ -20,10 +20,6 @@ const Item = inject('DressStore')(
     const [filtered, setFiltered] = useState(
       itemList.filter(obj => obj.type == route.params.name.toLowerCase()),
     );
-    const [masterDataSource, setMasterDataSource] = useState(
-      itemList.filter(obj => obj.type == route.params.name.toLowerCase()),
-    );
-    // console.log('list:', filteredDataSource);
     const addItem = (item, size, color) => {
       let Item = {
         ...item,
@@ -38,17 +34,17 @@ const Item = inject('DressStore')(
       if (text) {
         const newData = filtered.filter(function (item) {
           return (
-            item.sizes.includes(text) ||
-            item.name.includes(text) ||
-            item.brand.includes(text) ||
-            item.colors.includes(text)
+            item.sizes.includes(text.toLowerCase()) ||
+            item.name.includes(text.toLowerCase()) ||
+            item.brand.includes(text.toLowerCase()) ||
+            item.colors.includes(text.toLowerCase())
           );
         });
         setFiltered(newData);
         setSearch(text);
       } else {
         if (text.length < 2) {
-          setFiltered(masterDataSource.slice(0, 5));
+          setFiltered(itemList.slice(0, 5));
           setSearch(text);
         }
       }
@@ -57,6 +53,7 @@ const Item = inject('DressStore')(
     return (
       <View style={styles.center}>
         <TextInput
+          style={styles.txtInput}
           placeholder="search.. "
           onChangeText={text => searchFilterFunction(text)}
         />
@@ -177,6 +174,14 @@ const styles = StyleSheet.create({
     width: '5%',
     height: 10,
     flexDirection: 'row',
+  },
+  txtInput: {
+    marginTop: 10,
+    height: 50,
+    width: '90%',
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 5,
   },
 });
 

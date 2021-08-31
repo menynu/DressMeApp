@@ -29,7 +29,9 @@ const Home = inject('DressStore')(
         <Button name="Shirt" navigation={navigation} />
 
         {!DressStore.itemSet.includes(null) ? (
-          <TouchableOpacity onPress={() => handleFinishButton()}>
+          <TouchableOpacity
+            style={styles.Button}
+            onPress={() => handleFinishButton()}>
             <View>
               <Text>finish button</Text>
             </View>
@@ -46,6 +48,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
+  },
+  Button: {
+    flexDirection: 'row',
+    elevation: 10,
+    backgroundColor: 'lightgreen',
+    borderRadius: 20,
+    height: 35,
+    width: 140,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderColor: 'darkblue',
+    borderWidth: 2,
+    marginTop: 10,
   },
 });
 

@@ -57,7 +57,9 @@ class DressStore {
 
   fetchDataAsync = async () => {
     console.log('fetching data');
-    fetch('http://www.mocky.io/v2/5e3940013200005e00ddf87e?mocky-delay=600ms')
+    await fetch(
+      'http://www.mocky.io/v2/5e3940013200005e00ddf87e?mocky-delay=600ms',
+    )
       .then(response => {
         if (response.ok) {
           return response.json();
