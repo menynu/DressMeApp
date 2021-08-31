@@ -35,8 +35,13 @@ const DrawerNavigator = () => {
     <Drawer.Navigator
       drawerContent={props => <CustomDrawerContent {...props} />}>
       {/* <Drawer.Screen name="Item" component={BottomTabNavigator} /> */}
-      <Drawer.Screen name="Home" component={ItemStackNavigator} />
-      <Drawer.Screen name="Success" component={Success} />
+      <Drawer.Screen
+        name="Home"
+        component={ItemStackNavigator}
+        screenOptions={{
+          headerShown: false,
+        }}
+      />
     </Drawer.Navigator>
   );
 };

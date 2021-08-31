@@ -8,7 +8,6 @@ const Success = inject('DressStore')(
     const [dress, setDress] = React.useState(
       JSON.parse(JSON.stringify(DressStore.itemSet)),
     );
-    console.log('item set: ', dress);
     const handleClick = () => {
       DressStore.setTime();
       DressStore.finishDress();

@@ -20,9 +20,9 @@ class DressStore {
         storage: AsyncStorage, //check for future set
         removeOnExpiration: false,
         stringify: true, //would be set to true
-        debugMode: true,
+        debugMode: false,
       },
-      {delay: 200, fireImmediately: false},
+      {fireImmediately: true},
     );
     this.fetchDataAsync();
     this.setTime();

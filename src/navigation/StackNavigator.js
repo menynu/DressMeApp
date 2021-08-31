@@ -17,11 +17,24 @@ const screenOptionStyle = {
 const ItemStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
-      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{headerTitle: 'Dress Me App'}}
+        screenOptions={{
+          headerShown: false,
+        }}
+      />
       <Stack.Screen name="Shoes" component={Item} />
       <Stack.Screen name="Pants" component={Item} />
       <Stack.Screen name="Shirt" component={Item} />
-      <Stack.Screen name="Success" component={Success} />
+      <Stack.Screen
+        name="Success"
+        component={Success}
+        screenOptions={{
+          headerShown: false,
+        }}
+      />
     </Stack.Navigator>
   );
 };

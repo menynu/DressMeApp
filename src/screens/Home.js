@@ -10,17 +10,18 @@ const Home = inject('DressStore')(
     const [dress, setDress] = React.useState(
       JSON.parse(JSON.stringify(DressStore.itemSet)),
     );
-    console.log('the dress set is:', dress);
     const handleFinishButton = () => {
       navigation.navigate('Success');
     };
     return (
       <View style={styles.center}>
-        <Text>Welcome to Dress Me App</Text>
-        <Text>
+        <Text style={{fontSize: 25, marginBottom: 5, color: 'red'}}>
+          Welcome to Dress Me App
+        </Text>
+        <Text style={{fontSize: 15, marginBottom: 10}}>
           You have completed {DressStore.completedSet} sets in overall , Thanks!
         </Text>
-        <Text>
+        <Text style={{fontSize: 15, marginBottom: 10}}>
           You Choose {3 - DressStore.itemSet.filter(i => i === null).length}/ 3
           items for collections
         </Text>
@@ -61,6 +62,9 @@ const styles = StyleSheet.create({
     borderColor: 'darkblue',
     borderWidth: 2,
     marginTop: 10,
+  },
+  title: {
+    fontSize: 20,
   },
 });
 
